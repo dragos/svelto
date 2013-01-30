@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.svelto.plugin.feature_0.0.0.jar" id="org.svelto.plugin.feature" version="0.0.0">
+      <category name="org.svelto.plugin"/>
+   </feature>
+   <feature url="features/org.svelto.plugin.source.feature_0.0.0.jar" id="org.svelto.plugin.source.feature" version="0.0.0">
+      <category name="org.svelto.plugin-source"/>
+   </feature>
+   <category-def name="org.svelto.plugin" label="Svelto"/>
+   <category-def name="org.svelto.plugin-source" label="Svelto Source"/> -->
+</site>
