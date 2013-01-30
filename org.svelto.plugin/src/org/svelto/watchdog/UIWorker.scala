@@ -5,11 +5,13 @@ import java.util.concurrent.CyclicBarrier
 import java.util.concurrent.Semaphore
 import org.svelto.plugin.SveltoPlugin
 
-/** A thread that continuously posts an `asyncExec` work chunk that will be executed by
- *  the UI thread. The work chunk simply closes down a latch
+/** A thread that continuously posts an `syncExec` work chunk that will be executed by
+ *  the UI thread. The work chunk releases a semaphore that the Watchdog thread is waiting
+ *  to acquire.
+ *
+ *  @see WatchdogThread
  */
 class UIWorker(semaphore: Semaphore) extends Thread("Svelto worker") {
-  val SLEEP_TIME = 100 // ms
 
   override def run() {
     while (!SveltoPlugin.stopped) {
@@ -19,7 +21,7 @@ class UIWorker(semaphore: Semaphore) extends Thread("Svelto worker") {
           semaphore.release()
         }
 
-        Thread.sleep(SLEEP_TIME)
+        Thread.sleep(SveltoPlugin.SLEEP_TIME)
       } catch {
         case e: InterruptedException =>
           println("Interrupted")

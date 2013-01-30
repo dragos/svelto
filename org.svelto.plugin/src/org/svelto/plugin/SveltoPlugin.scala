@@ -22,6 +22,8 @@ object SveltoPlugin {
 
   @volatile
   var stopped = false
+  
+  final val SLEEP_TIME = 200 // ms
 
   def apply(): SveltoPlugin = plugin
 

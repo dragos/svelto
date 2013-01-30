@@ -7,7 +7,7 @@ import org.eclipse.core.runtime.IStatus
 class Startup extends IStartup {
 
   override def earlyStartup() {
-    SveltoPlugin.log(IStatus.OK, "Svelto plugin startup")
+    SveltoPlugin.log(IStatus.OK, "Svelto plugin started")
     (new WatchdogThread).start()
   }
 }
