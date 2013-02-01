@@ -13,10 +13,12 @@ import org.eclipse.swt.events.SelectionAdapter
 import org.eclipse.swt.layout.GridData
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer
 import org.eclipse.core.runtime.Platform
+import org.eclipse.jface.preference.BooleanFieldEditor
 
 class SveltoPreferences extends FieldEditorPreferencePage(FieldEditorPreferencePage.GRID) with IWorkbenchPreferencePage {
 
   override def createFieldEditors() {
+    addField(new BooleanFieldEditor(SveltoPreferences.IGNORE_SWT, "&Ignore pauses inside `swt.internal` packages", getFieldEditorParent()))
     addField(new IntegerFieldEditor(SveltoPreferences.MAX_PAUSE, "&Maximum pause &(ms):", getFieldEditorParent(), 4))
     addField(new DirectoryFieldEditor(SveltoPreferences.OUTPUT_DIR, "&Output directory:", getFieldEditorParent()))
   }
@@ -52,6 +54,7 @@ object SveltoPreferences {
   final val baseId = "org.svelto.plugin."
   final val MAX_PAUSE = baseId + "maxPause"
   final val OUTPUT_DIR = baseId + "outputDir"
+  final val IGNORE_SWT = baseId + "ignoreSwt"
 }
 
 class SveltoPreferencesInitializer extends AbstractPreferenceInitializer {
@@ -61,5 +64,6 @@ class SveltoPreferencesInitializer extends AbstractPreferenceInitializer {
     val store = SveltoPlugin().getPreferenceStore
     store.setDefault(MAX_PAUSE, 500)
     store.setDefault(OUTPUT_DIR, Platform.getInstanceLocation().getURL().toURI().getPath())
+    store.setDefault(IGNORE_SWT, true)
   }
 }

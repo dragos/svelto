@@ -30,8 +30,11 @@ class WatchdogThread extends Thread("Svelto Watchdog") {
   def outDir: String =
     SveltoPlugin().getPreferenceStore().getString(SveltoPreferences.OUTPUT_DIR)
 
-  def maxPause(): Int =
+  def maxPause: Int =
     SveltoPlugin().getPreferenceStore().getInt(SveltoPreferences.MAX_PAUSE)
+
+  def ignoreSwtInternal: Boolean =
+    SveltoPlugin().getPreferenceStore().getBoolean(SveltoPreferences.IGNORE_SWT)
 
   override def run() {
     Thread.sleep(10000) // enough to get the UI up and running (too many false positives on startup otherwise)
@@ -109,9 +112,9 @@ class WatchdogThread extends Thread("Svelto Watchdog") {
   }
 
   /** Don't report hangs in SWT internal code */
-  private def shouldReport(tis: Array[ThreadInfo]): Boolean = {
-    !tis.find(_.getThreadName().startsWith("main")).exists(_.getStackTrace().take(2).exists(_.getClassName().startsWith("org.eclipse.swt.internal.")))
-  }
+  private def shouldReport(tis: Array[ThreadInfo]): Boolean =
+    (!ignoreSwtInternal ||
+      !tis.find(_.getThreadName().startsWith("main")).exists(_.getStackTrace().take(2).exists(_.getClassName().startsWith("org.eclipse.swt.internal."))))
 
   private def stringifyThreadInfo(info: ThreadInfo): String = {
     import info._
@@ -122,7 +125,7 @@ class WatchdogThread extends Thread("Svelto Watchdog") {
     if (getLockOwnerName() != null) sb.append(" owned by \"" + getLockOwnerName() + "\" Id=" + getLockOwnerId())
     if (isSuspended()) sb.append(" (suspended)")
     if (isInNative()) sb.append(" (in native)")
- 
+
     sb.append('\n')
     for ((ste, i) <- info.getStackTrace().zipWithIndex) {
       sb.append("\tat " + ste.toString())
