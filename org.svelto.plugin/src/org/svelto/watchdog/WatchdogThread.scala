@@ -60,7 +60,8 @@ class WatchdogThread extends Thread("Svelto Watchdog") {
       val info = getThreadInfoMX
       if (shouldReport(info)) {
         SveltoPlugin.log(IStatus.WARNING, "UI thread blocked, dumping threads to " + outDir)
-        val infoString = info.map(stringifyThreadInfo).mkString("\n")
+        val (mainThread, rest) = info.toSeq.partition(_.getThreadName().startsWith("main"))
+        val infoString = (mainThread ++ rest).map(stringifyThreadInfo).mkString("\n")
 
         // wait until the UI thread is responsive again
         semaphore.tryAcquire(1, 10, TimeUnit.SECONDS)
