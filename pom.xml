@@ -39,7 +39,7 @@
     <repo.eclipse>${repo.eclipse.indigo}</repo.eclipse>
 
     <!-- some default values, can be overwritten by profiles -->
-    <scala.version>2.9.3-SNAPSHOT</scala.version>
+    <scala.version>2.9.3</scala.version>
     <version.suffix>2_09</version.suffix>
     <scala.version.short>2.9</scala.version.short>
     <version.tag>local</version.tag>
@@ -50,12 +50,15 @@
     <profile>
       <!-- this is the default profile, using the stable Scala build-->
       <id>scala-2.9</id>
+      <properties>
+        <repo.scala-ide>${repo.scala-ide.root}/sdk/next/e37/scala29/dev/base/</repo.scala-ide>
+      </properties>
     </profile>
     <profile>
-      <!-- Scala 2.10.0 -->
-      <id>scala-2.10.0</id>
+      <!-- Scala 2.10.x -->
+      <id>scala-2.10.x</id>
       <properties>
-        <scala.version>2.10.0</scala.version>
+        <scala.version>2.10.1-RC2</scala.version>
         <version.suffix>2_10</version.suffix>
         <repo.scala-ide>${repo.scala-ide.root}/sdk/next/e37/scala210/dev/base/</repo.scala-ide>
         <scala.version.short>2.10</scala.version.short>
