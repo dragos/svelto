@@ -13,7 +13,6 @@
 
   <modules>
     <module>org.svelto.plugin</module>
-    <module>org.svelto.plugin.tests</module>
     <module>org.svelto.plugin.feature</module>
     <module>org.svelto.plugin.source.feature</module>
     <module>org.svelto.plugin.update-site</module>
