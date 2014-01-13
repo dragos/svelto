@@ -9,4 +9,5 @@
   </parent>
   <artifactId>org.svelto.plugin.update-site</artifactId>
   <packaging>eclipse-update-site</packaging>
+
 </project>
