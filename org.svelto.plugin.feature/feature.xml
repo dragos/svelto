@@ -7,7 +7,7 @@
       plugin="org.svelto.plugin">
 
    <description url="http://www.scala-ide.org">
-      Svelto is a ligthweight performance monitoring tool. 
+      Svelto is a ligthweight performance monitoring tool.
 
 It automatically takes thread dumps when the UI thread is unresponsive.
    </description>
@@ -228,9 +228,14 @@ All rights reserved.
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.ui"/>
-      <import plugin="org.scala-ide.scala.library"/>
    </requires>
 
+   <plugin
+         id="org.scala-lang.scala-library"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
    <plugin
          id="org.svelto.plugin"
          download-size="0"
