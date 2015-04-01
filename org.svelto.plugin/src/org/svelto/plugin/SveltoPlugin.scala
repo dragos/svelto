@@ -13,6 +13,7 @@ class SveltoPlugin extends AbstractUIPlugin {
 
   override def stop(context: BundleContext) {
     SveltoPlugin.stopped = true
+    SveltoPlugin.plugin = null
   }
 }
 
@@ -22,7 +23,7 @@ object SveltoPlugin {
 
   @volatile
   var stopped = false
-  
+
   final val SLEEP_TIME = 200 // ms
 
   def apply(): SveltoPlugin = plugin

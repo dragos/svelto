@@ -44,7 +44,7 @@ class WatchdogThread extends Thread("Svelto Watchdog") {
     while (true) {
       Thread.sleep(SveltoPlugin.SLEEP_TIME)
       try {
-        if (!semaphore.tryAcquire(1, maxPause, TimeUnit.MILLISECONDS))
+        if (!SveltoPlugin.stopped && !semaphore.tryAcquire(1, maxPause, TimeUnit.MILLISECONDS))
           dumpThreads()
       } catch {
         case e: InterruptedException =>
