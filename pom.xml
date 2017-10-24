@@ -21,17 +21,17 @@
   <properties>
     <encoding>UTF-8</encoding>
     <!-- fixed versions -->
-    <tycho.version>0.18.1</tycho.version>
-    <scala.plugin.version>3.1.5</scala.plugin.version>
+    <tycho.version>0.20.0</tycho.version>
+    <scala.plugin.version>3.3.1</scala.plugin.version>
 
     <!-- tycho test related -->
     <tycho.test.OSspecific></tycho.test.OSspecific>
     <tycho.test.jvmArgs>-Xmx800m -XX:MaxPermSize=256m -Dsdtcore.headless ${tycho.test.OSspecific}</tycho.test.jvmArgs>
 
     <!-- dependencies repos -->
-    <repo.eclipse.juno>http://download.eclipse.org/releases/juno</repo.eclipse.juno>
-    <eclipse.codename>juno</eclipse.codename>
-    <repo.eclipse>${repo.eclipse.juno}</repo.eclipse>
+    <repo.eclipse.oxygen>http://download.eclipse.org/releases/oxygen</repo.eclipse.oxygen>
+    <eclipse.codename>oxygen</eclipse.codename>
+    <repo.eclipse>${repo.eclipse.oxygen}</repo.eclipse>
 
     <!-- some default values, can be overwritten by profiles -->
     <scala.version>2.10.3</scala.version>
@@ -54,6 +54,15 @@
         <scala.version>2.11.0-SNAPSHOT</scala.version>
         <version.suffix>2_11</version.suffix>
         <scala.version.short>2.11</scala.version.short>
+      </properties>
+    </profile>
+    <profile>
+      <!-- Scala 2.12.x -->
+      <id>scala-2.12.x</id>
+      <properties>
+        <scala.version>2.12.3</scala.version>
+        <version.suffix>2_12</version.suffix>
+        <scala.version.short>2.12</scala.version.short>
       </properties>
     </profile>
 
